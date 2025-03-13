@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,19 +10,39 @@ namespace JetBrainsInterviewProject
 {
     public partial class MainWindow : Window
     {
-        private static readonly SolidColorBrush StdoutColor = new SolidColorBrush(Colors.PaleGreen);
+        private static readonly SolidColorBrush StdoutColor = new SolidColorBrush(Colors.LightGray);
         private static readonly SolidColorBrush StderrColor = new SolidColorBrush(Colors.OrangeRed);
-        private static readonly SolidColorBrush InfoColor = new SolidColorBrush(Colors.LightSkyBlue);
         private static readonly SolidColorBrush SuccessColor = new SolidColorBrush(Colors.ForestGreen);
         private static readonly SolidColorBrush WarningColor = new SolidColorBrush(Colors.Yellow);
         private static readonly SolidColorBrush ErrorColor = new SolidColorBrush(Colors.Red);
+        
+        private readonly ICommandExecutionService _commandService;
 
         public MainWindow()
         {
             InitializeComponent();
             CommandInputTextBox.Focus();
             
-            DisplayColoredText("Ready to execute commands. Type a command and press Enter or click Execute.", InfoColor);
+            _commandService = new CommandExecutionService();
+            
+            ((CommandExecutionService)_commandService).OutputReceived += OnOutputReceived;
+            ((CommandExecutionService)_commandService).ErrorReceived += OnErrorReceived;
+        }
+        
+        private void OnOutputReceived(string data)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                DisplayColoredText(data + Environment.NewLine, StdoutColor);
+            });
+        }
+        
+        private void OnErrorReceived(string data)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                DisplayColoredText(data + Environment.NewLine, StderrColor);
+            });
         }
 
         private async void ExecuteButton_Click(object sender, RoutedEventArgs e)
@@ -55,8 +73,19 @@ namespace JetBrainsInterviewProject
                 
                 CommandOutput.Document.Blocks.Clear();
                 
-
-                await Task.Run(() => RunProcess(command));
+                CommandResult result = await _commandService.ExecuteCommandAsync(command);
+                
+                if (result.IsSuccess)
+                {
+                    StatusText.Text = "Command executed successfully";
+                    DisplayColoredText($"\nCommand completed with exit code: {result.ExitCode}\n", SuccessColor);
+                }
+                else
+                {
+                    StatusText.Text = $"Command exited with code {result.ExitCode}";
+                    DisplayColoredText($"\nCommand completed with exit code: {result.ExitCode}\n", 
+                        result.ExitCode > 0 ? WarningColor : ErrorColor);
+                }
             }
             catch (Exception ex)
             {
@@ -72,69 +101,6 @@ namespace JetBrainsInterviewProject
             }
         }
 
-        private void RunProcess(string command)
-        {
-            string executable = "cmd.exe";
-            string arguments = $"/c {command}";
-
-            using (Process process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo
-                {
-                    FileName = executable,
-                    Arguments = arguments,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                };
-
-                process.OutputDataReceived += (sender, args) =>
-                {
-                    if (args.Data != null)
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                            DisplayColoredText(args.Data + Environment.NewLine, StdoutColor);
-                        });
-                    }
-                };
-
-                process.ErrorDataReceived += (sender, args) =>
-                {
-                    if (args.Data != null)
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                            DisplayColoredText(args.Data + Environment.NewLine, StderrColor);
-                        });
-                    }
-                };
-                
-                process.Start();
-                
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
-                
-                process.WaitForExit();
-                
-                Dispatcher.Invoke(() =>
-                {
-                    if (process.ExitCode == 0)
-                    {
-                        StatusText.Text = "Command executed successfully";
-                        DisplayColoredText($"\nCommand completed with exit code: {process.ExitCode}\n", SuccessColor);
-                    }
-                    else
-                    {
-                        StatusText.Text = $"Command exited with code {process.ExitCode}";
-                        DisplayColoredText($"\nCommand completed with exit code: {process.ExitCode}\n", 
-                            process.ExitCode > 0 ? WarningColor : ErrorColor);
-                    }
-                });
-            }
-        }
-        
         private void DisplayColoredText(string text, SolidColorBrush color)
         {
             TextRange tr = new TextRange(CommandOutput.Document.ContentEnd, CommandOutput.Document.ContentEnd);

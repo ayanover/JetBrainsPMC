@@ -20,3 +20,4 @@ C:\Users\JakubGrych(272583)\RiderProjects\JetBrainsInterviewProject\JetBrainsInt
 C:\Users\JakubGrych(272583)\RiderProjects\JetBrainsInterviewProject\JetBrainsInterviewProject\obj\Debug\net9.0-windows\JetBrainsInterviewProject.genruntimeconfig.cache
 C:\Users\JakubGrych(272583)\RiderProjects\JetBrainsInterviewProject\JetBrainsInterviewProject\obj\Debug\net9.0-windows\ref\JetBrainsInterviewProject.dll
 C:\Users\JakubGrych(272583)\RiderProjects\JetBrainsInterviewProject\JetBrainsInterviewProject\obj\Debug\net9.0-windows\Services.baml
+C:\Users\JakubGrych(272583)\RiderProjects\JetBrainsInterviewProject\JetBrainsInterviewProject\obj\Debug\net9.0-windows\JetBrainsInterviewProject.sourcelink.json

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JetBrainsInterviewProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e286e47e61c5b69e85be2b03d753b8fcab2a4a43")]
 [assembly: System.Reflection.AssemblyProductAttribute("JetBrainsInterviewProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JetBrainsInterviewProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
