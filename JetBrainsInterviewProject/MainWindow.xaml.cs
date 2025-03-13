@@ -21,9 +21,8 @@ namespace JetBrainsInterviewProject
             CommandInputTextBox.Focus();
             
             _commandService = new CommandExecutionService();
-            
-            ((CommandExecutionService)_commandService).OutputReceived += OnOutputReceived;
-            ((CommandExecutionService)_commandService).ErrorReceived += OnErrorReceived;
+            _commandService.OutputReceived += OnOutputReceived;
+            _commandService.ErrorReceived += OnErrorReceived;
         }
         
         private void OnOutputReceived(string data)

@@ -3,8 +3,11 @@ using System.Text;
 
 namespace JetBrainsInterviewProject
 {
+    public delegate void OutputReceivedHandler(string data);
     public interface ICommandExecutionService
     {
+        event OutputReceivedHandler OutputReceived;
+        event OutputReceivedHandler ErrorReceived;
         Task<CommandResult> ExecuteCommandAsync(string command);
     }
 
@@ -17,7 +20,6 @@ namespace JetBrainsInterviewProject
 
     public class CommandExecutionService : ICommandExecutionService
     {
-        public delegate void OutputReceivedHandler(string data);
         public event OutputReceivedHandler? OutputReceived;
         public event OutputReceivedHandler? ErrorReceived;
 
