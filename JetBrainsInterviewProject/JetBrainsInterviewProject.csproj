@@ -9,9 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="CommandExecutionService.xaml.cs">
-        <DependentUpon>Services.xaml</DependentUpon>
-      </Compile>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
     </ItemGroup>
 
 </Project>

@@ -5,54 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JetBrainsInterviewProject"
         mc:Ignorable="d"
-        Title="Shell Command Executor" Height="500" Width="800">
+        Title="Command Executor" Height="450" Width="800"
+        Background="#1E1E1E">
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <!-- Command Input Area -->
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox x:Name="CommandInputTextBox" 
+                     Grid.Column="0" 
+                     Text="{Binding CommandText, UpdateSourceTrigger=PropertyChanged}"
+                     Padding="5"
+                     FontFamily="Consolas"
+                     FontSize="14"
+                     Background="#2D2D30"
+                     Foreground="White"
+                     KeyDown="CommandInputTextBox_KeyDown"/>
+            
+            <Button x:Name="ExecuteButton" 
+                    Grid.Column="1" 
+                    Content="Execute" 
+                    Command="{Binding ExecuteCommand}"
+                    Margin="5,0,0,0"
+                    Padding="10,5"
+                    Background="#0E639C"
+                    Foreground="White"
+                    BorderThickness="0"/>
+        </Grid>
         
-        <Label Grid.Row="0" Grid.Column="0" Content="Enter Command:" FontWeight="Bold"/>
+        <!-- Command Output Area -->
+        <RichTextBox x:Name="CommandOutput" 
+                     Grid.Row="1" 
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     Background="#2D2D30"
+                     FontFamily="Consolas"
+                     FontSize="14"
+                     BorderThickness="1"
+                     BorderBrush="#3F3F46">
+            <RichTextBox.Document>
+                <FlowDocument/>
+            </RichTextBox.Document>
+        </RichTextBox>
         
-        <TextBox Grid.Row="1" Grid.Column="0" x:Name="CommandInputTextBox" 
-                 FontFamily="Consolas" FontSize="14" Padding="5"
-                 KeyDown="CommandInput_KeyDown"/>
-        
-        <Button Grid.Row="1" Grid.Column="1" x:Name="ExecuteButton" Content="Execute" 
-                Padding="15,5" Margin="10,0,0,0" Click="ExecuteButton_Click"/>
-        
-        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-               Content="Command Output:" FontWeight="Bold" VerticalAlignment="Top"/>
-        
-        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,25,0,0" 
-                BorderBrush="LightGray" BorderThickness="1">
-            <RichTextBox x:Name="CommandOutput" IsReadOnly="True"
-                       FontFamily="Consolas" FontSize="14" Background="#1E1E1E"
-                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                       VerticalScrollBarVisibility="Auto" Padding="5">
-                <RichTextBox.Resources>
-                    <Style TargetType="Paragraph">
-                        <Setter Property="Margin" Value="0"/>
-                    </Style>
-                </RichTextBox.Resources>
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Foreground="#CCCCCC" Text="Command output will appear here..."/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </Border>
-        
-        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="25">
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="2" Margin="0,10,0,0" Background="#007ACC">
             <StatusBarItem>
-                <TextBlock x:Name="StatusText" Text="Ready"/>
+                <TextBlock x:Name="StatusText" 
+                           Text="{Binding StatusText}" 
+                           Foreground="White"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>
