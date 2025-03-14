@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 using JetBrainsInterviewProject.Interfaces;
 using JetBrainsInterviewProject.Enums;
 using JetBrainsInterviewProject.DTO;
-using System.Threading.Tasks;
 
 namespace JetBrainsInterviewProject.Services
 {
@@ -30,7 +28,7 @@ namespace JetBrainsInterviewProject.Services
             StringBuilder error = new StringBuilder();
             int exitCode = 0;
 
-            using (Process process = new Process())
+            using (Process process = new())
             {
                 process.StartInfo = new ProcessStartInfo
                 {
@@ -55,7 +53,7 @@ namespace JetBrainsInterviewProject.Services
                 {
                     if (args.Data != null)
                     {
-                        error.AppendLine($"ERROR: {args.Data}");
+                        error.AppendLine(args.Data);
                         OutputReceived?.Invoke(args.Data, OutputType.Error);
                     }
                 };
