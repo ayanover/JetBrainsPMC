@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Tx9dlTO30CQ=",
+  "dgSpecHash": "7Wokp2AqoEc=",
   "success": true,
   "projectFilePath": "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\JetBrainsInterviewProject\\JetBrainsInterviewProject.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\JakubGrych(272583)\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.3\\microsoft.extensions.dependencyinjection.9.0.3.nupkg.sha512",
+    "C:\\Users\\JakubGrych(272583)\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.3\\microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

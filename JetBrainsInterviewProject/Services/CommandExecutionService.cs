@@ -1,27 +1,16 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
+using JetBrainsInterviewProject.Interfaces;
+using JetBrainsInterviewProject.Enums;
+using JetBrainsInterviewProject.DTO;
+using System.Threading.Tasks;
 
-namespace JetBrainsInterviewProject
+namespace JetBrainsInterviewProject.Services
 {
-    public delegate void OutputReceivedHandler(string data);
-    public interface ICommandExecutionService
-    {
-        event OutputReceivedHandler OutputReceived;
-        event OutputReceivedHandler ErrorReceived;
-        Task<CommandResult> ExecuteCommandAsync(string command);
-    }
-
-    public class CommandResult
-    {
-        public string Output { get; set; } = string.Empty;
-        public int ExitCode { get; set; }
-        public bool IsSuccess => ExitCode == 0;
-    }
-
     public class CommandExecutionService : ICommandExecutionService
     {
         public event OutputReceivedHandler? OutputReceived;
-        public event OutputReceivedHandler? ErrorReceived;
 
         public async Task<CommandResult> ExecuteCommandAsync(string command)
         {
@@ -58,7 +47,7 @@ namespace JetBrainsInterviewProject
                     if (args.Data != null)
                     {
                         output.AppendLine(args.Data);
-                        OutputReceived?.Invoke(args.Data);
+                        OutputReceived?.Invoke(args.Data, OutputType.Standard);
                     }
                 };
 
@@ -67,7 +56,7 @@ namespace JetBrainsInterviewProject
                     if (args.Data != null)
                     {
                         error.AppendLine($"ERROR: {args.Data}");
-                        ErrorReceived?.Invoke($"ERROR: {args.Data}");
+                        OutputReceived?.Invoke(args.Data, OutputType.Error);
                     }
                 };
 
