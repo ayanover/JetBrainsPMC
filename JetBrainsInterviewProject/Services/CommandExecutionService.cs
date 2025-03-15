@@ -22,8 +22,8 @@ namespace JetBrainsInterviewProject.Services
 
         private CommandResult ExecuteCommand(string command)
         {
-            string executable = "cmd.exe";
-            string arguments = $"/c {command}";
+            string executable = "powershell.exe";
+            string arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"";
             StringBuilder output = new StringBuilder();
             StringBuilder error = new StringBuilder();
             int exitCode = 0;
