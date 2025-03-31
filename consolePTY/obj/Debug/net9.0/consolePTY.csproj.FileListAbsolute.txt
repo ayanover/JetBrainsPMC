@@ -1,0 +1,44 @@
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfoInputs.cache
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfo.cs
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.csproj.CoreCompileInputs.cache
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\bin\Debug\net9.0\consolePTY.exe
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\bin\Debug\net9.0\consolePTY.deps.json
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\bin\Debug\net9.0\consolePTY.runtimeconfig.json
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\bin\Debug\net9.0\consolePTY.dll
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\bin\Debug\net9.0\consolePTY.pdb
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.dll
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\refint\consolePTY.dll
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.pdb
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\consolePTY.genruntimeconfig.cache
+C:\Users\JakubGrych(272583)\RiderProjects\WPF ConPTY\consolePTY\obj\Debug\net9.0\ref\consolePTY.dll
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\bin\Debug\net9.0\consolePTY.exe
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\bin\Debug\net9.0\consolePTY.deps.json
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\bin\Debug\net9.0\consolePTY.runtimeconfig.json
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\bin\Debug\net9.0\consolePTY.dll
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\bin\Debug\net9.0\consolePTY.pdb
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfoInputs.cache
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfo.cs
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.csproj.CoreCompileInputs.cache
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.sourcelink.json
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.dll
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\refint\consolePTY.dll
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.pdb
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\consolePTY.genruntimeconfig.cache
+C:\Users\rexiv\RiderProjects\PTYConsoleTemplate\consolePTY\obj\Debug\net9.0\ref\consolePTY.dll
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\bin\Debug\net9.0\consolePTY.exe
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\bin\Debug\net9.0\consolePTY.deps.json
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\bin\Debug\net9.0\consolePTY.runtimeconfig.json
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\bin\Debug\net9.0\consolePTY.dll
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\bin\Debug\net9.0\consolePTY.pdb
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfoInputs.cache
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.AssemblyInfo.cs
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.csproj.CoreCompileInputs.cache
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.sourcelink.json
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.dll
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\refint\consolePTY.dll
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.pdb
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\consolePTY.genruntimeconfig.cache
+C:\Users\rexiv\RiderProjects\JetBrainsPMC\consolePTY\obj\Debug\net9.0\ref\consolePTY.dll
