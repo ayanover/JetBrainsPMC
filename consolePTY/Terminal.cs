@@ -36,9 +36,6 @@ namespace ConPTY
         /// Start the pseudoconsole and run the process as shown in 
         /// https://docs.microsoft.com/en-us/windows/console/creating-a-pseudoconsole-session#creating-the-pseudoconsole
         /// </summary>
-        /// <param name="command">the command to run, e.g. cmd.exe</param>
-        /// <param name="consoleHeight">The height (in characters) to start the pseudoconsole with. Defaults to 80.</param>
-        /// <param name="consoleWidth">The width (in characters) to start the pseudoconsole with. Defaults to 30.</param>
         public void Start(string command, int consoleWidth = 80, int consoleHeight = 30)
         {
             using (var inputPipe = new PseudoConsolePipe())

@@ -1,15 +1,17 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using WPF_ConPTY.Services.Interfaces;
 
-namespace WPF_ConPTY
+namespace WPF_ConPTY.Services
 {
     /// <summary>
     /// Processes VT100 escape sequences and applies them to a RichTextBox
     /// </summary>
-    public class VT100Formatter
+    public class VT100Formatter : IVT100Formatter
     {
         private int _currentRow = 0;
         private int _currentCol = 0;
@@ -44,17 +46,17 @@ namespace WPF_ConPTY
         private static readonly Regex EscapeSequenceRegex = new Regex(
             @"(?:\x1B\[|\[)([0-9;?]*)([a-zA-Z@])",
             RegexOptions.Compiled);
-        
+
         private bool _cursorVisible = true;
 
         private Paragraph _currentParagraph;
 
         public VT100Formatter(RichTextBox textBox)
         {
-            _textBox = textBox;
+            _textBox = textBox ?? throw new ArgumentNullException(nameof(textBox));
             _textBox.Document.LineHeight = 1.0;
             _textBox.FontFamily = new FontFamily("Consolas");
-            _textBox.Background = Brushes.Black;
+            _textBox.Background = Brushes.Transparent;
             _textBox.Foreground = Brushes.White;
             _textBox.IsReadOnly = true;
             _textBox.AcceptsReturn = true;
@@ -68,6 +70,8 @@ namespace WPF_ConPTY
         /// <summary>
         /// Process and append text with VT100 sequences to the RichTextBox
         /// </summary>
+        ///
+        
         public void ProcessText(string text)
         {
             text = PreProcessPowerShellOutput(text);
@@ -124,7 +128,7 @@ namespace WPF_ConPTY
                     break;
 
                 case 'H':
-                case 'f': 
+                case 'f':
                     ProcessCursorPosition(paramArray);
                     break;
 
@@ -319,7 +323,7 @@ namespace WPF_ConPTY
         private void ResetAttributes()
         {
             _currentForeground = Brushes.White;
-            _currentBackground = Brushes.Black;
+            _currentBackground = Brushes.Transparent;
             _isBold = false;
             _isUnderline = false;
             _isItalic = false;
@@ -330,6 +334,19 @@ namespace WPF_ConPTY
             // Skip if empty
             if (string.IsNullOrEmpty(text))
                 return;
+
+            // Handle the specific pattern you discovered
+            // This normalizes the inconsistent line ending + escape sequence pattern
+            text = text.Replace("\r\u001b", "\r");  // Replace carriage return + escape with just carriage return
+            text = text.Replace("\n\u001b", "\n");  // Replace newline + escape with just newline
+
+            // Normalize line endings
+            text = Regex.Replace(text, @"\r\n|\n\r", "\r\n");
+
+            // Ensure escape sequences are properly formatted for processing
+            text = text.Replace("\u001b", "\x1B");  // Ensure all escapes are in the format we expect
+
+            // Rest of your existing method...
 
             // Create a formatted text run
             var textRun = new Run(text);
@@ -351,6 +368,7 @@ namespace WPF_ConPTY
             if (_currentParagraph == null || !_textBox.Document.Blocks.Contains(_currentParagraph))
             {
                 _currentParagraph = new Paragraph();
+                _currentParagraph.Margin = new Thickness(0);  // Set zero margins
                 _textBox.Document.Blocks.Add(_currentParagraph);
             }
 
@@ -360,7 +378,6 @@ namespace WPF_ConPTY
             // Auto-scroll if needed
             _textBox.ScrollToEnd();
         }
-
         // Generates colors for the 256-color palette
         private SolidColorBrush Get256Color(int index)
         {

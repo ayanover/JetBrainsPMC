@@ -1,6 +1,10 @@
-﻿<Window x:Class="TerminalPoC.MainWindow"
+﻿<Window x:Class="WPF_ConPTY.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_ConPTY.Views"
+        mc:Ignorable="d"
         Title="Terminal PoC"
         Width="900"
         Height="700"
@@ -117,6 +121,7 @@
                      Background="#40000000"
                      Foreground="White"
                      BorderBrush="#333333"
+                     Text="{Binding CommandInput, UpdateSourceTrigger=PropertyChanged}"
                      KeyDown="InputTextBox_KeyDown"/>
 
             <Button x:Name="SendButton" 
@@ -127,7 +132,7 @@
                     Background="#40333333"
                     Foreground="White"
                     BorderBrush="#666666"
-                    Click="SendButton_Click"/>
+                    Command="{Binding SendCommand}"/>
         </Grid>
     </Grid>
 </Window>

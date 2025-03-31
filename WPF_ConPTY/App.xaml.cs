@@ -1,35 +1,56 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-using System.Windows;
+﻿using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using ConPTY;
+using WPF_ConPTY.Views;
+using WPF_ConPTY.Services;
+using WPF_ConPTY.Services.Interfaces;
+using WPF_ConPTY.ViewModels;
 
-namespace GUIConsole.Wpf
+namespace YourApp.UI
 {
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
     public partial class App : Application
     {
+        private ServiceProvider _serviceProvider;
+
         public App()
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-            
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            ServiceCollection services = new ServiceCollection();
+            ConfigureServices(services);
+            _serviceProvider = services.BuildServiceProvider();
         }
 
-        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void ConfigureServices(ServiceCollection services)
         {
-            Console.WriteLine($"Unhandled exception: {e.Exception}");
-            
-            if (e.Exception.Message.Contains("resources") || 
-                e.Exception.Message.Contains("resource"))
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                MessageBox.Show($"An unexpected error occurred: {e.Exception.Message}", 
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Handled = true;
-            }
+            services.AddSingleton<Terminal>();
+            services.AddSingleton<ITerminalService, TerminalService>();
+            services.AddSingleton<IVT100Formatter, VT100Formatter>();
+
+            // Optional: Command interceptor
+            services.AddSingleton<ICommandInterceptor, CommandInterceptor>();
+            services.AddSingleton<INuGetCommandHandler, NuGetCommandHandler>();
+
+            // Register view models
+            services.AddSingleton<TerminalViewModel>();
+
+            // Register views
+            services.AddSingleton<MainWindow>();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _serviceProvider.Dispose();
+            base.OnExit(e);
         }
     }
 }
