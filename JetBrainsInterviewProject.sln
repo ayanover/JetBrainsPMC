@@ -1,16 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrainsInterviewProject", "JetBrainsInterviewProject\JetBrainsInterviewProject.csproj", "{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JetBrainsInterviewProject", "JetBrainsInterviewProject\JetBrainsInterviewProject.csproj", "{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F1A63CC4-4FFC-4ABA-9179-F5DC4936B466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0AD173EB-D1BF-475F-A9D9-766416EA0E37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0AD173EB-D1BF-475F-A9D9-766416EA0E37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTYSolution", "PTYSolution", "{1CF2484F-AA03-4691-971E-F36A4D25A3E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consolePTY", "consolePTY\consolePTY.csproj", "{5F18DF79-0D30-46A7-B21B-E5A261BF8366}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "consolePTY", "consolePTY\consolePTY.csproj", "{5F18DF79-0D30-46A7-B21B-E5A261BF8366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_ConPTY", "WPF_ConPTY\WPF_ConPTY.csproj", "{8061D3B4-D3CF-410F-B062-2297601395AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_ConPTY", "WPF_ConPTY\WPF_ConPTY.csproj", "{8061D3B4-D3CF-410F-B062-2297601395AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5138BCE-10F0-4898-967D-69A29A9EDCE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +40,15 @@ Global
 		{8061D3B4-D3CF-410F-B062-2297601395AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8061D3B4-D3CF-410F-B062-2297601395AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0AD173EB-D1BF-475F-A9D9-766416EA0E37} = {F1A63CC4-4FFC-4ABA-9179-F5DC4936B466}
 		{5F18DF79-0D30-46A7-B21B-E5A261BF8366} = {1CF2484F-AA03-4691-971E-F36A4D25A3E4}
 		{8061D3B4-D3CF-410F-B062-2297601395AE} = {1CF2484F-AA03-4691-971E-F36A4D25A3E4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {838D619E-2CC6-4594-936B-CCED6CB2613D}
 	EndGlobalSection
 EndGlobal
