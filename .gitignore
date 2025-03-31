@@ -3,3 +3,5 @@ JetBrainsInterviewProject.sln
 JetBrainsInterviewProject.sln.DotSettings.user
 JetBrainsInterviewProject/bin/
 JetBrainsInterviewProject/obj/
+UnitTests/bin/
+UnitTests/obj/

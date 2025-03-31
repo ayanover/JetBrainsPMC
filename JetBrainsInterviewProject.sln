@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrainsInterviewProject", "JetBrainsInterviewProject\JetBrainsInterviewProject.csproj", "{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F1A63CC4-4FFC-4ABA-9179-F5DC4936B466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0AD173EB-D1BF-475F-A9D9-766416EA0E37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,12 @@ Global
 		{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7D6DC59-3017-44BD-B1F0-2C7671C53F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AD173EB-D1BF-475F-A9D9-766416EA0E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD173EB-D1BF-475F-A9D9-766416EA0E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD173EB-D1BF-475F-A9D9-766416EA0E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD173EB-D1BF-475F-A9D9-766416EA0E37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0AD173EB-D1BF-475F-A9D9-766416EA0E37} = {F1A63CC4-4FFC-4ABA-9179-F5DC4936B466}
 	EndGlobalSection
 EndGlobal
