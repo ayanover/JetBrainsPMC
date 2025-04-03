@@ -18,20 +18,17 @@ namespace WPF_ConPTY.Services
         {
             _serviceProvider = serviceProvider;
 
-            // Register built-in command handlers
             RegisterBuiltInHandlers();
         }
 
         private void RegisterBuiltInHandlers()
         {
-            // Get all command handlers from the service provider
             var nuGetHandler = _serviceProvider.GetService<INuGetCommandHandler>();
             if (nuGetHandler != null)
             {
                 RegisterHandler(nuGetHandler);
             }
 
-            // You can add additional built-in handlers here
         }
 
         /// <summary>
