@@ -24,7 +24,7 @@ namespace WPF_ConPTY.Services
         public TerminalService(VT100Formatter formatter)
         {
             _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
-            _terminal = new Terminal();  // Using your existing Terminal class
+            _terminal = new Terminal();
 
             _terminal.OutputReady += Terminal_OutputReady;
         }
@@ -158,7 +158,6 @@ Write-Output $logo
 
                 SendCommand(executeCommand, false);
 
-                // Clean up the temporary script file after a delay
                 await Task.Delay(2000);
 
                 try
@@ -170,12 +169,10 @@ Write-Output $logo
                 }
                 catch
                 {
-                    // Ignore errors when deleting the temp file
                 }
             }
             catch
             {
-                // Ignore errors in the welcome message
             }
         }
         private void StartStreamReading()
@@ -215,7 +212,6 @@ Write-Output $logo
                 }
                 catch
                 {
-                    // Log errors if needed
                 }
             }, _readCancellation.Token);
         }
