@@ -57,7 +57,6 @@ namespace WPF_ConPTY.Services
 
         private async Task<List<NuGetPackage>> SearchPackagesAsync(string query)
         {
-            // Use the NuGet API to search for packages
             string url = $"https://azuresearch-usnc.nuget.org/query?q={Uri.EscapeDataString(query)}&take=5";
 
             var response = await _httpClient.GetStringAsync(url);
@@ -92,7 +91,6 @@ namespace WPF_ConPTY.Services
             return sb.ToString();
         }
 
-        // Models for NuGet API response
         private class NuGetSearchResult
         {
             public List<NuGetPackage> Data { get; set; }

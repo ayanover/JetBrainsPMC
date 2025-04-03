@@ -174,23 +174,22 @@ namespace WPF_ConPTY.Services
 
                 switch (param)
                 {
-                    case 0: // Reset all attributes
+                    case 0: 
                         ResetAttributes();
                         break;
 
-                    case 1: // Bold
+                    case 1: 
                         _isBold = true;
                         break;
 
-                    case 4: // Underline
+                    case 4: 
                         _isUnderline = true;
                         break;
 
-                    case 3: // Italic
+                    case 3: 
                         _isItalic = true;
                         break;
 
-                    // Foreground colors (30-37)
                     case 30:
                     case 31:
                     case 32:
@@ -202,7 +201,6 @@ namespace WPF_ConPTY.Services
                         _currentForeground = StandardColors[param - 30];
                         break;
 
-                    // Background colors (40-47)
                     case 40:
                     case 41:
                     case 42:
@@ -214,7 +212,6 @@ namespace WPF_ConPTY.Services
                         _currentBackground = StandardColors[param - 40];
                         break;
 
-                    // Bright foreground colors (90-97)
                     case 90:
                     case 91:
                     case 92:
@@ -226,7 +223,6 @@ namespace WPF_ConPTY.Services
                         _currentForeground = StandardColors[param - 90 + 8];
                         break;
 
-                    // Bright background colors (100-107)
                     case 100:
                     case 101:
                     case 102:
@@ -245,7 +241,7 @@ namespace WPF_ConPTY.Services
                             if (int.TryParse(parameters[i + 2], out colorIndex) && colorIndex >= 0 && colorIndex < 256)
                             {
                                 _currentForeground = Get256Color(colorIndex);
-                                i += 2; // Skip the next two parameters
+                                i += 2; 
                             }
                         }
                         break;
@@ -257,7 +253,7 @@ namespace WPF_ConPTY.Services
                             if (int.TryParse(parameters[i + 2], out colorIndex) && colorIndex >= 0 && colorIndex < 256)
                             {
                                 _currentBackground = Get256Color(colorIndex);
-                                i += 2; // Skip the next two parameters
+                                i += 2; 
                             }
                         }
                         break;
@@ -267,8 +263,6 @@ namespace WPF_ConPTY.Services
 
         private void ProcessCursorPosition(string[] parameters)
         {
-            // For basic cursor positioning, we can handle newlines 
-            // and clear the current paragraph if it's a home position (1,1)
             int row = 1;
             int col = 1;
 
@@ -278,7 +272,6 @@ namespace WPF_ConPTY.Services
             if (parameters.Length >= 2 && !string.IsNullOrEmpty(parameters[1]))
                 int.TryParse(parameters[1], out col);
 
-            // If it's a "Home" position (1,1), we can clear and restart
             if (row == 1 && col == 1)
             {
                 _currentParagraph = new Paragraph();
@@ -295,17 +288,15 @@ namespace WPF_ConPTY.Services
 
             switch (mode)
             {
-                case 0: // Clear from cursor to end of screen
-                    // Simplified to just creating a new paragraph
+                case 0: 
                     _currentParagraph = new Paragraph();
                     _textBox.Document.Blocks.Add(_currentParagraph);
                     break;
 
-                case 1: // Clear from cursor to beginning of screen
-                    // Simplified approach
+                case 1: 
                     break;
 
-                case 2: // Clear entire screen
+                case 2: 
                     _textBox.Document.Blocks.Clear();
                     _currentParagraph = new Paragraph();
                     _textBox.Document.Blocks.Add(_currentParagraph);
@@ -315,7 +306,7 @@ namespace WPF_ConPTY.Services
 
         private void ProcessEraseLine(string[] parameters)
         {
-            // Simplified line erasing - create a new paragraph
+
             _currentParagraph = new Paragraph();
             _textBox.Document.Blocks.Add(_currentParagraph);
         }
@@ -331,27 +322,21 @@ namespace WPF_ConPTY.Services
 
         private void AppendText(string text)
         {
-            // Skip if empty
             if (string.IsNullOrEmpty(text))
                 return;
 
-            // Handle the specific pattern you discovered
-            // This normalizes the inconsistent line ending + escape sequence pattern
-            text = text.Replace("\r\u001b", "\r");  // Replace carriage return + escape with just carriage return
-            text = text.Replace("\n\u001b", "\n");  // Replace newline + escape with just newline
 
-            // Normalize line endings
+            text = text.Replace("\r\u001b", "\r");  
+            text = text.Replace("\n\u001b", "\n");  
+
             text = Regex.Replace(text, @"\r\n|\n\r", "\r\n");
 
-            // Ensure escape sequences are properly formatted for processing
-            text = text.Replace("\u001b", "\x1B");  // Ensure all escapes are in the format we expect
+            text = text.Replace("\u001b", "\x1B");  
 
-            // Rest of your existing method...
 
-            // Create a formatted text run
+
             var textRun = new Run(text);
 
-            // Apply current formatting
             textRun.Foreground = _currentForeground;
             textRun.Background = _currentBackground;
 
@@ -364,28 +349,24 @@ namespace WPF_ConPTY.Services
             if (_isItalic)
                 textRun.FontStyle = FontStyles.Italic;
 
-            // Get the current paragraph
+
             if (_currentParagraph == null || !_textBox.Document.Blocks.Contains(_currentParagraph))
             {
                 _currentParagraph = new Paragraph();
-                _currentParagraph.Margin = new Thickness(0);  // Set zero margins
+                _currentParagraph.Margin = new Thickness(0);  
                 _textBox.Document.Blocks.Add(_currentParagraph);
             }
 
-            // Add the text run
+
             _currentParagraph.Inlines.Add(textRun);
 
-            // Auto-scroll if needed
             _textBox.ScrollToEnd();
         }
-        // Generates colors for the 256-color palette
         private SolidColorBrush Get256Color(int index)
         {
-            // First 16 colors are the standard colors
             if (index < 16)
                 return StandardColors[index];
 
-            // Colors 16-231 are a 6x6x6 color cube
             if (index < 232)
             {
                 index -= 16;
@@ -395,7 +376,6 @@ namespace WPF_ConPTY.Services
                 return new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
             }
 
-            // Colors 232-255 are grayscale
             int gray = (index - 232) * 10 + 8;
             return new SolidColorBrush(Color.FromRgb((byte)gray, (byte)gray, (byte)gray));
         }
