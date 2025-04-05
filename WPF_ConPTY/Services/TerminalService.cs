@@ -112,18 +112,15 @@ namespace WPF_ConPTY.Services
                 // IMPORTANT - I HOPED IT'LL FIX inconsistent line height in larger inpurs but its fucks things up even more
                 // TO CHECK LATER
 //                string formatSettings = @"
-//# Force consistent output formatting
 //$FormatEnumerationLimit = 50
 //$host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size 120, 5000
 //$PSDefaultParameterValues['Format-Table:AutoSize'] = $true
 
-//# For directory listings specifically
 //function Format-DirectoryListing {
 //    param($Path = '.')
 //    Get-ChildItem $Path | Out-String -Width 120
 //}
 
-//# Create aliases that use our consistent formatter
 //Set-Alias -Name ls -Value Format-DirectoryListing -Option AllScope -Force
 //Set-Alias -Name dir -Value Format-DirectoryListing -Option AllScope -Force
 //";
