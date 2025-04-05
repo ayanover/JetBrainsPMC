@@ -1,0 +1,158 @@
+﻿<Window x:Class="PSHostApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PSHostApp"
+        xmlns:viewmodels="clr-namespace:PSHostApp.ViewModels"
+        mc:Ignorable="d"
+        Title="Terminal PoC"
+        Width="900"
+        Height="700"
+        AllowsTransparency="True"
+        Background="#C7000000"
+        BorderBrush="LightSlateGray"
+        BorderThickness="1"
+        WindowStyle="None"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Up" Command="{Binding NavigateHistoryUpCommand}" />
+        <KeyBinding Key="Down" Command="{Binding NavigateHistoryDownCommand}" />
+        <KeyBinding Key="Enter" Command="{Binding SendCommand}" />
+    </Window.InputBindings>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#40000000" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                     Margin="10,8,0,8"
+                     VerticalAlignment="Center"
+                     Foreground="White"
+                     Text="Terminal PoC" />
+
+            <StackPanel Grid.Column="1" 
+                      Orientation="Horizontal" 
+                      HorizontalAlignment="Right">
+                <Button Content="🗕" 
+                      Width="45" 
+                      Height="30"
+                      Background="Transparent"
+                      Foreground="White"
+                      BorderThickness="0"
+                      Click="MinimizeButton_Click"/>
+                <Button Content="🗖" 
+                      Width="45" 
+                      Height="30"
+                      Background="Transparent"
+                      Foreground="White"
+                      BorderThickness="0"
+                      Click="MaximizeButton_Click"/>
+                <Button Content="✕" 
+                      Width="45" 
+                      Height="30"
+                      Background="Transparent"
+                      Foreground="White"
+                      BorderThickness="0"
+                      Click="CloseButton_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#E81123"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" 
+                BorderThickness="1" 
+                BorderBrush="#333333" 
+                Margin="5"
+                Background="#40000000">
+            <RichTextBox x:Name="OutputRichTextBox" 
+                         IsReadOnly="True" 
+                         VerticalScrollBarVisibility="Auto" 
+                         HorizontalScrollBarVisibility="Auto"
+                         Background="Transparent"
+                         Foreground="White"
+                         FontFamily="Consolas"
+                         FontSize="12"
+                         Padding="5"
+                         BorderThickness="0">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="LineHeight" Value="1.0"/>
+                    </Style>
+                </RichTextBox.Resources>
+                <FlowDocument/>
+            </RichTextBox>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="InputTextBox" 
+                     Grid.Column="0"
+                     FontFamily="Consolas" 
+                     FontSize="14"
+                     Padding="5,3"
+                     Margin="0,0,5,0"
+                     AcceptsReturn="False"
+                     Background="#40000000"
+                     Foreground="White"
+                     BorderBrush="#333333"
+                     Text="{Binding CommandInput, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button x:Name="ClearButton" 
+                    Grid.Column="1"
+                    Content="Clear" 
+                    Width="80"
+                    Height="30"
+                    Background="#40333333"
+                    Foreground="White"
+                    BorderBrush="#666666"
+                    Margin="0,0,5,0"
+                    Command="{Binding ClearCommand}"/>
+
+            <Button x:Name="SendButton" 
+                    Grid.Column="2"
+                    Content="Send" 
+                    Width="80"
+                    Height="30"
+                    Background="#40333333"
+                    Foreground="White"
+                    BorderBrush="#666666"
+                    Command="{Binding SendCommand}"/>
+        </Grid>
+    </Grid>
+</Window>

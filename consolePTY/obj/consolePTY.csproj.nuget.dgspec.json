@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rexiv\\RiderProjects\\JetBrainsPMC\\consolePTY\\consolePTY.csproj": {}
+    "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\consolePTY\\consolePTY.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rexiv\\RiderProjects\\JetBrainsPMC\\consolePTY\\consolePTY.csproj": {
+    "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\consolePTY\\consolePTY.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rexiv\\RiderProjects\\JetBrainsPMC\\consolePTY\\consolePTY.csproj",
+        "projectUniqueName": "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\consolePTY\\consolePTY.csproj",
         "projectName": "consolePTY",
-        "projectPath": "C:\\Users\\rexiv\\RiderProjects\\JetBrainsPMC\\consolePTY\\consolePTY.csproj",
-        "packagesPath": "C:\\Users\\rexiv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rexiv\\RiderProjects\\JetBrainsPMC\\consolePTY\\obj\\",
+        "projectPath": "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\consolePTY\\consolePTY.csproj",
+        "packagesPath": "C:\\Users\\JakubGrych(272583)\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JakubGrych(272583)\\RiderProjects\\JetBrainsInterviewProject\\consolePTY\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rexiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\JakubGrych(272583)\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

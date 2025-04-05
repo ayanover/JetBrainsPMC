@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>PSHostApp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.2.25163.2" />
+      <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.4.0" />
+      <PackageReference Include="Microsoft.PowerShell.Commands.Management" Version="7.4.0" />
+      <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="7.4.0" />
+      <PackageReference Include="Microsoft.PowerShell.ConsoleHost" Version="7.4.0" />
+      <PackageReference Include="Microsoft.WSMan.Management" Version="7.4.0" />
+      <PackageReference Include="System.Management.Automation" Version="7.4.0" />
+    </ItemGroup>
+
+</Project>
