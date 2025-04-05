@@ -1,3 +1,7 @@
+##Final Effect##
+![image](https://github.com/user-attachments/assets/b21d4684-32b1-4447-b81c-3387185bf188)
+![image](https://github.com/user-attachments/assets/56a8e83b-3c3f-43c6-8e68-c07aeacbde6f)
+
 # Custom Console - JetBrainsPMC
 
 Project created as for a JetBrains internship application. The task was to create an app that has an input that takes in commands with arguments and returns a formatted output in another field.
@@ -17,3 +21,4 @@ After some time I learned about ConPTY or a pseudoconsole, which lets me execute
 But before that, I had to make the program actually work. For the first solution and start of the second one, I used Rider IDE. However in the second one, something was off, Even after several tries and hours of debugging, I couldn't get it to work. At this time I found a thread that let me know about an issue of debugger eating up contents
 of a pipe. 
 
+![image](https://github.com/user-attachments/assets/fcbffb53-1476-4634-bb5a-511a931a5c9b)
