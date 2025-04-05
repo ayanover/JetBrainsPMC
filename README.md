@@ -1,6 +1,6 @@
 ## Final Effect
 ![image](https://github.com/user-attachments/assets/b21d4684-32b1-4447-b81c-3387185bf188)
-![image](https://github.com/user-attachments/assets/56a8e83b-3c3f-43c6-8e68-c07aeacbde6f)
+![Untitled](https://github.com/user-attachments/assets/17a6bc9c-563d-418e-bd8f-c546dbaf61e8)
 
 # Custom Console - JetBrainsPMC
 
