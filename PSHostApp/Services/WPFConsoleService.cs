@@ -7,9 +7,6 @@ using PSHostApp.Enum;
 
 namespace PSHostApp.Services
 {
-    /// <summary>
-    /// WPF implementation of the console service
-    /// </summary>
     public class WpfConsoleService : IConsoleService
     {
         private readonly RichTextBox _outputTextBox;

@@ -7,9 +7,6 @@ using PSHostApp.ViewModels;
 
 namespace PSHostApp
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private ServiceProvider _serviceProvider;

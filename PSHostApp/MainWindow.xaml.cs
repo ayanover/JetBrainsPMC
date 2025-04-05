@@ -7,9 +7,6 @@ using PSHostApp.ViewModels;
 
 namespace PSHostApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly TerminalViewModel _viewModel;

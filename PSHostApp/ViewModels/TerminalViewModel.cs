@@ -127,10 +127,7 @@ namespace PSHostApp.ViewModels
             Dispose(false);
         }
     }
-
-    /// <summary>
-    /// Simple ICommand implementation
-    /// </summary>
+    
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
