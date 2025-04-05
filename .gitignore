@@ -26,3 +26,6 @@ UnitTests/obj/
 /WPF_ConPTY/obj/WPF_ConPTY.csproj.nuget.dgspec.json
 /WPF_ConPTY/obj/WPF_ConPTY.csproj.nuget.g.props
 /WPF_ConPTY/obj/WPF_ConPTY.csproj.nuget.g.targets
+/consolePTY/bin/Debug/net8.0-windows
+/WPF_ConPTY/bin/Debug/net8.0-windows
+/WPF_ConPTY/obj

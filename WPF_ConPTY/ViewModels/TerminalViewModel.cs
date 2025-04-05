@@ -10,17 +10,10 @@ using WPF_ConPTY.Services;
 
 namespace WPF_ConPTY.ViewModels
 {
-    /// <summary>
-    /// ViewModel for the terminal UI
-    /// </summary>
     public class TerminalViewModel : INotifyPropertyChanged
     {
         private readonly ITerminalService _terminalService;
         private string _commandInput;
-
-        /// <summary>
-        /// The current command input
-        /// </summary>
         public string CommandInput
         {
             get => _commandInput;
@@ -30,25 +23,15 @@ namespace WPF_ConPTY.ViewModels
                 {
                     _commandInput = value;
                     OnPropertyChanged();
-                    CommandManager.InvalidateRequerySuggested(); // Refresh command can-execute state
+                    CommandManager.InvalidateRequerySuggested(); 
                 }
             }
         }
 
-        /// <summary>
-        /// Command to send the current input to the terminal
-        /// </summary>
         public ICommand SendCommand { get; }
 
-        /// <summary>
-        /// Command to clear the terminal
-        /// </summary>
         public ICommand ClearCommand { get; }
 
-        /// <summary>
-        /// Creates a new terminal view model
-        /// </summary>
-        /// <param name="terminalService">The terminal service</param>
         public TerminalViewModel(ITerminalService terminalService)
         {
             _terminalService = terminalService ?? throw new ArgumentNullException(nameof(terminalService));
@@ -57,22 +40,17 @@ namespace WPF_ConPTY.ViewModels
             ClearCommand = new RelayCommand(ExecuteClearCommand);
         }
 
-        /// <summary>
-        /// Start the terminal
-        /// </summary>
         public async Task InitializeTerminalAsync()
         {
             await _terminalService.StartTerminalAsync(
-                "powershell.exe -NoProfile -NoExit -Command \"function prompt { return '>> ' }; " +
+                "powershell.exe -NoProfile -NoExit -Command \"function prompt { return \\\"`n>> \\\" }; " +
+                "$Host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size(120, 120); " +
+                "$Host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.Size(120, 120); " +
                 "Set-PSReadLineOption -HistorySaveStyle SaveNothing -ShowToolTips:$false -AddToHistoryHandler { return $false }\"",
-                120, 30);
+                120, 120);
         }
 
-        /// <summary>
-        /// Show a welcome message or logo
-        /// </summary>
-        
-
+            
         private bool CanExecuteSendCommand(object parameter)
         {
             return !string.IsNullOrWhiteSpace(CommandInput);
@@ -93,9 +71,6 @@ namespace WPF_ConPTY.ViewModels
             _terminalService.SendCommand("cls", false);
         }
 
-        /// <summary>
-        /// Close the terminal when the application is shutting down
-        /// </summary>
         public void Shutdown()
         {
             _terminalService.CloseTerminal();

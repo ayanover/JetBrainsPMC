@@ -8,9 +8,6 @@ using WPF_ConPTY.ViewModels;
 
 namespace WPF_ConPTY.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly TerminalViewModel _viewModel;
@@ -29,7 +26,6 @@ namespace WPF_ConPTY.Views
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.InitializeTerminalAsync();
-            //await _viewModel.ShowWelcomeMessageAsync();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -70,7 +66,6 @@ namespace WPF_ConPTY.Views
             {
                 e.Handled = true;
 
-                // Execute the send command if it can execute
                 if (_viewModel.SendCommand.CanExecute(null))
                 {
                     _viewModel.SendCommand.Execute(null);

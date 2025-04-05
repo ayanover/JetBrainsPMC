@@ -28,14 +28,7 @@ namespace YourApp.UI
             services.AddSingleton<ITerminalService, TerminalService>();
             services.AddSingleton<IVT100Formatter, VT100Formatter>();
 
-            // Optional: Command interceptor
-            services.AddSingleton<ICommandInterceptor, CommandInterceptor>();
-            services.AddSingleton<INuGetCommandHandler, NuGetCommandHandler>();
-
-            // Register view models
             services.AddSingleton<TerminalViewModel>();
-
-            // Register views
             services.AddSingleton<MainWindow>();
         }
 

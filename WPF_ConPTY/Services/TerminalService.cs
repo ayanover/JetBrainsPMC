@@ -9,18 +9,13 @@ using WPF_ConPTY.Services.Interfaces;
 
 namespace WPF_ConPTY.Services
 {
-    /// <summary>
-    /// Service that coordinates between terminal functionality and UI
-    /// </summary>
     public class TerminalService : ITerminalService
     {
         private readonly Terminal _terminal;
         private readonly VT100Formatter _formatter;
         private CancellationTokenSource _readCancellation;
 
-        /// <summary>
-        /// Creates a new terminal service
-        /// </summary>
+
         public TerminalService(VT100Formatter formatter)
         {
             _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
@@ -29,14 +24,26 @@ namespace WPF_ConPTY.Services
             _terminal.OutputReady += Terminal_OutputReady;
         }
 
-        /// <summary>
-        /// Start the terminal with a command
-        /// </summary>
-        public Task StartTerminalAsync(string command, int width = 120, int height = 30)
+        public Task StartTerminalAsync(string command, int width = 80, int height = 120)
         {
             return Task.Run(() => {
                 try
                 {
+                    string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+                    string targetDirectory = currentDirectory;
+                    while (!string.IsNullOrEmpty(targetDirectory) &&
+                           !Path.GetFileName(targetDirectory.TrimEnd(Path.DirectorySeparatorChar)).Equals("WPF_ConPTY", StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetDirectory = Path.GetDirectoryName(targetDirectory);
+                    }
+
+                    if (string.IsNullOrEmpty(targetDirectory))
+                    {
+                        targetDirectory = currentDirectory;
+                    }
+                    Directory.SetCurrentDirectory(targetDirectory);
+
                     _terminal.Start(command, width, height);
                 }
                 catch (Exception ex)
@@ -47,10 +54,6 @@ namespace WPF_ConPTY.Services
                 }
             });
         }
-
-        /// <summary>
-        /// Send a command to the terminal
-        /// </summary>
         public void SendCommand(string command, bool displayInOutput = true)
         {
             if (string.IsNullOrEmpty(command))
@@ -78,9 +81,6 @@ namespace WPF_ConPTY.Services
             }
         }
 
-        /// <summary>
-        /// Close the terminal
-        /// </summary>
         public void CloseTerminal()
         {
             if (_readCancellation != null)
@@ -92,7 +92,8 @@ namespace WPF_ConPTY.Services
             {
                 _terminal?.WriteToPseudoConsole("exit\r");
             }
-            catch{
+            catch
+            {
 
             }
         }
@@ -103,78 +104,25 @@ namespace WPF_ConPTY.Services
             ShowWelcomeMessageAsync();
             StartStreamReading();
         }
+
         public async Task ShowWelcomeMessageAsync()
         {
             await Task.Delay(1000);
 
             try
             {
-                // IMPORTANT - I HOPED IT'LL FIX inconsistent line height in larger inpurs but its fucks things up even more
-                // TO CHECK LATER
-//                string formatSettings = @"
-//# Force consistent output formatting
-//$FormatEnumerationLimit = 50
-//$host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size 120, 5000
-//$PSDefaultParameterValues['Format-Table:AutoSize'] = $true
-
-//# For directory listings specifically
-//function Format-DirectoryListing {
-//    param($Path = '.')
-//    Get-ChildItem $Path | Out-String -Width 120
-//}
-
-//# Create aliases that use our consistent formatter
-//Set-Alias -Name ls -Value Format-DirectoryListing -Option AllScope -Force
-//Set-Alias -Name dir -Value Format-DirectoryListing -Option AllScope -Force
-//";
-
-//                SendCommand(formatSettings, false);
-
-                string scriptPath = Path.Combine(Path.GetTempPath(), "logo.ps1");
-                string scriptContent = @"
-Clear-Host
-$logo = @'
-                        _       _____  __  __  _____ 
-     /\                ( )     |  __ \|  \/  |/ ____|
-    /  \__   _____ _ __|/ ___  | |__) | \  / | |     
-   / /\ \ \ / / _ \ '__| / __| |  ___/| |\/| | |     
-  / ____ \ V /  __/ |    \__ \ | |    | |  | | |____ 
- /_/    \_\_/ \___|_|    |___/ |_|    |_|  |_|\_____|
-                                                     
- ====================================================
-           Terminal App v1.0.0
- ====================================================
-
-.
-'@
-Write-Output $logo
-[Console]::ForegroundColor = 'DarkGray'
-";
-
-                File.WriteAllText(scriptPath, scriptContent);
-                string executeCommand = $@"powershell.exe -NoProfile -ExecutionPolicy Bypass -NoLogo -NonInteractive -File ""{scriptPath}""";
                 SendCommand("cls", false);
                 await Task.Delay(100);
-
-                SendCommand(executeCommand, false);
-
+                string profilePath = ("./NewFolder/Startup.ps1");
+                SendCommand($". '{profilePath}'", false);
                 await Task.Delay(2000);
-
-                try
-                {
-                    if (File.Exists(scriptPath))
-                    {
-                        File.Delete(scriptPath);
-                    }
-                }
-                catch
-                {
-                }
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Error in welcome message: {ex.Message}");
             }
         }
+
         private void StartStreamReading()
         {
             Task.Run(() => {

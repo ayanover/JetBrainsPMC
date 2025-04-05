@@ -8,9 +8,6 @@ using WPF_ConPTY.Services.Interfaces;
 
 namespace WPF_ConPTY.Services
 {
-    /// <summary>
-    /// Processes VT100 escape sequences and applies them to a RichTextBox
-    /// </summary>
     public class VT100Formatter : IVT100Formatter
     {
         private int _currentRow = 0;
@@ -25,26 +22,26 @@ namespace WPF_ConPTY.Services
 
         private static readonly SolidColorBrush[] StandardColors = new SolidColorBrush[]
         {
-            Brushes.Black,           // 0: Black
-            Brushes.DarkRed,         // 1: Dark Red
-            Brushes.DarkGreen,       // 2: Dark Green
-            Brushes.DarkGoldenrod,   // 3: Dark Yellow
-            Brushes.DarkBlue,        // 4: Dark Blue
-            Brushes.DarkMagenta,     // 5: Dark Magenta
-            Brushes.DarkCyan,        // 6: Dark Cyan
-            Brushes.LightGray,       // 7: Light Gray
-            Brushes.DarkGray,        // 8: Dark Gray
-            Brushes.Red,             // 9: Red
-            Brushes.Green,           // 10: Green
-            Brushes.Yellow,          // 11: Yellow
-            Brushes.Blue,            // 12: Blue
-            Brushes.Magenta,         // 13: Magenta
-            Brushes.Cyan,            // 14: Cyan
-            Brushes.White            // 15: White
+            Brushes.Black,           
+            Brushes.DarkRed,        
+            Brushes.DarkGreen,      
+            Brushes.DarkGoldenrod,   
+            Brushes.DarkBlue,      
+            Brushes.DarkMagenta,   
+            Brushes.DarkCyan,     
+            Brushes.LightGray,    
+            Brushes.DarkGray,    
+            Brushes.Red,         
+            Brushes.Green,        
+            Brushes.Yellow,        
+            Brushes.Blue,      
+            Brushes.Magenta,    
+            Brushes.Cyan,  
+            Brushes.White
         };
 
         private static readonly Regex EscapeSequenceRegex = new Regex(
-            @"(?:\x1B\[|\[)([0-9;?]*)([a-zA-Z@])",
+            @"\x1B\[([0-9;?]*)([a-zA-Z@])",
             RegexOptions.Compiled);
 
         private bool _cursorVisible = true;
@@ -66,11 +63,6 @@ namespace WPF_ConPTY.Services
             _currentParagraph = new Paragraph();
             _textBox.Document.Blocks.Add(_currentParagraph);
         }
-
-        /// <summary>
-        /// Process and append text with VT100 sequences to the RichTextBox
-        /// </summary>
-        ///
         
         public void ProcessText(string text)
         {
@@ -132,16 +124,16 @@ namespace WPF_ConPTY.Services
                     ProcessCursorPosition(paramArray);
                     break;
 
-                case 'J': // ED - Erase Display
+                case 'J': 
                     ProcessEraseDisplay(paramArray);
                     break;
 
-                case 'K': // EL - Erase Line
+                case 'K': 
                     ProcessEraseLine(paramArray);
                     break;
 
-                case 'l': // Reset Mode
-                case 'h': // Set Mode
+                case 'l': 
+                case 'h': 
                     ProcessMode(parameters, command);
                     break;
             }
