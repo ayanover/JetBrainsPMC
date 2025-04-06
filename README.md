@@ -23,5 +23,5 @@ But before that, I had to make the program actually work. For the first solution
 Then, after switching to VS, I opened the app, and everything worked just fine
 
 
-Another problem was that I encountered was the formatting. Even though I was processing everything alright. The output was starting to have weird gaps after some lines as visible below
+Another problem that I encountered was the formatting. Even though I was processing everything alright. The output was starting to have weird gaps after some lines as visible below
 ![image](https://github.com/user-attachments/assets/fcbffb53-1476-4634-bb5a-511a931a5c9b)
