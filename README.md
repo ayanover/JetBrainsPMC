@@ -2,9 +2,9 @@
 ![image](https://github.com/user-attachments/assets/eac80dbd-dc81-41ab-935d-6a21d8e80066)
 ![Untitled](https://github.com/user-attachments/assets/17a6bc9c-563d-418e-bd8f-c546dbaf61e8)
 
-# Custom Console - JetBrainsPMC
+# Custom Console
 
-Project created as for a JetBrains internship application. The task was to create an app that has an input that takes in commands with arguments and returns a formatted output in another field.
+Project created as for an internship application. The task was to create an app that has an input that takes in commands with arguments and returns a formatted output in another field.
 
 # Development process
 
